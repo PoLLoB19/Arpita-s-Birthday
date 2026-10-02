@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffd3df" />
+  <title>Happy Birthday Arpita 🎂</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>" />
+
+  <!-- Handwriting fonts (Hind Siliguri is included so Bengali poems look good too) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Hind+Siliguri:wght@400;500;600&family=Noto+Serif+Bengali:wght@400;500;600;700&family=Pacifico&family=Quicksand:wght@500;700&family=Tiro+Bengali:ital@0;1&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <noscript><style>.reveal, .poem p { opacity: 1 !important; transform: none !important; }</style></noscript>
+</head>
+
+<body>
+  <div class="progress" id="progress"></div>
+  <div class="doodle-layer" aria-hidden="true"></div>
+  <div class="emoji-layer" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- Music button (only appears if audio/song.mp3 exists) -->
+  <button class="music" id="musicBtn" type="button" hidden aria-label="Play or pause music">🎵</button>
+  <audio id="bgm" loop preload="auto">
+    <source src="/photos/Y2Mate.is - Dmitri Shostakovich - Waltz No 2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ================= COVER ================= -->
+  <header class="hero" id="top">
+    <div class="bunting" aria-hidden="true"></div>
+
+    <span class="hero-doodle hd-1" data-doodle="balloon" aria-hidden="true"></span>
+    <span class="hero-doodle hd-2" data-doodle="balloon" aria-hidden="true"></span>
+    <span class="hero-doodle hd-3" data-doodle="flower" aria-hidden="true"></span>
+    <span class="hero-doodle hd-4" data-doodle="gift" aria-hidden="true"></span>
+    <span class="hero-doodle hd-5" data-doodle="star" aria-hidden="true"></span>
+    <span class="hero-doodle hd-6" data-doodle="heart" aria-hidden="true"></span>
+
+    <div class="hero-inner">
+      <p class="eyebrow">a little surprise, made just for you</p>
+      <!-- ✏️ Her name is set in script.js (CONFIG at the top) -->
+      <h1>Happy Birthday,<br /><span class="name" data-her-name>Her Name</span>!</h1>
+      <p class="eyebrow">I wrote you something… 💌</p>
+      <button class="btn open-btn" id="openBtn" type="button">Open your surprise 🎁</button>
+    </div>
+
+    <a class="scroll-hint" href="#start">scroll down ↓</a>
+  </header>
+
+  <!-- ================= STORY ================= -->
+  <main id="start">
+
+    <div class="note tilt reveal left" style="--rot:-3deg">
+      Heyy… scroll slowly, there's a lot waiting for you ✨
+    </div>
+
+    <!-- ✏️ POEM 1 — each <p> is one line or one stanza. They appear one after another. -->
+    <article class="poem-card reveal">
+      <h2 class="poem-title">Happy Birthday, Arpita ♡</h2>
+      <div class="poem">
+        <p>I hope your day is filled with little moments that make you smile,
+           beautiful memories that stay with you, and all the happiness you truly deserve.
+          <br />May this new year of your life bring you closer to your dreams, 
+          surround you with people who genuinely care about you, and give you countless reasons to smile.
+        </p>
+        <p>Stay happy, stay kind, and keep being the lovely person you are.
+          <br />Happy Birthday once again, Arpita.
+May your life always be filled with beautiful moments, warm hearts, and a little extra magic. ✨🌷</p>
+  
+      </div>
+    </article>
+
+
+
+    <!-- EDITABLE POETRY CAROUSEL — replace the text inside any slide with your own poem. -->
+    <section class="poetry-carousel reveal" id="poetry" lang="bn" aria-label="২৪টি বাংলা কবিতা">
+      <div class="carousel-heading">
+        <p class="script-label">A Little Collection of Poems   
+         </p>
+        <h2 class="section-title">২৪টি কবিতা <span aria-hidden="true">♡</span></h2>
+        <p class="carousel-note">প্রতিটি পাতায় তোমার জন্য লেখা কবিতা </br>
+          ( নিচের সংখ্যা বা তীর চিহ্নে ক্লিক করে পড়ো )</p>
+      </div>
+
+      <div class="poetry-window">
+        <article class="poem-slide is-active" data-poem="1">
+          <span class="poem-number">০১ / ০৬</span>
+          <h3>রজনীগন্ধা</h3>
+          <p>রজনীগন্ধা তোমার প্রিয় ফুল,<br />
+            তা জানার পর থেকে ফুলটা আমার কাছেও বিশেষ হয়ে উঠেছে।<br />
+          সে মুহুর্ত পর্যন্ত লম্বাটে সবুজ সাদার সংমিশ্রণে ফোঁটা ফুলটি
+            আর পাঁচটা নাম জানা -অজানা ফুলের মতোই ছিলো মূল্যহীন।</p>
+          <p>তবে তোমার রজনীগন্ধার প্রতি ভালোবাসা দেখে আমিও ভালোবেসে ফেলেছি এই ফুলকে,<br />
+            আসলে তোমাকে ভালোবাসা মানেই হয়তো তোমার সব ভালোবাসাকে ভালোবাসা।</p>
+          <p>পানির মধ্যে জমিয়ে রাখলে অনেকদিন অব্দি বেঁচে থাকে রজনীগন্ধা,
+            সাথে সুবাস ছড়ায় চারিদিক,
+            ঠিক তোমার প্রতি আমার ভালোবাসার মতো,<br />
+            তোমার চোখের চাহনি আমার ভালোবাসার জন্য পানি,<br />
+            আর আমার কবিতা ভালোবাসার সুবাস।</p>
+        </article>
+        <article class="poem-slide" data-poem="2">
+          <span class="poem-number">০২ / ০৬</span>
+          <h3>প্রথম যেদিন</h3>
+          <p>প্রথম যেদিন তোমায় দেখেছিলাম<br />
+            সেদিনের কথা আমার স্পষ্ট মনে আছে,<br />
+            তুমি খুব ধীর পায়ে বেরিয়ে যাচ্ছিলে আমার পাশ দিয়ে,<br />
+            আমি অবাক হয়েছিলাম তোমার মুগ্ধতায়</p>
+          <p>তোমায় দেখে প্রথম মাথায় এসেছিলো,<br />
+            এতো সরল সোজা বুঝি মানুষও হয়?</p>
+          <p>আমার হৃদয়ের কাছে সাত হাত মতো জায়গা ছিলো নিজের বলতে<br />
+            ঠিক সে মুহুর্ত থেকে সেটিও হলো তোমার।</p>
+          <p>তারপর থেকে কোনোদিন কল্পনাও করিনি আমার নিজের বলতে কোনো জায়গা আছে,<br />
+            আমার সবই তো তোমার,<br />
+            আমি উল্টে রোজ ভিক্ষে করতে বেরুয়,<br />
+            যদি মনের মাঝে তোমার নামে আরেকটু জায়গা কেনা যায়।</p>
+        </article>
+        <article class="poem-slide" data-poem="3">
+          <span class="poem-number">০৩ / ০৬</span>
+          <h3>তোমার কান্না</h3>
+          <p>পৃথিবীতে যেসব বস্তু আমি ঘৃণা করি,<br />
+            একদম সহ্য করতে পারিনা,<br />
+            যেসব বস্তু আমাকে দুমড়ে মুচড়ে নিঃশেষ করে দেয়,<br />
+            যেসব বস্তু আমাকে চরমভাবে আহত করে,<br />
+            যেসব বস্তু আমাকে ঠেলে দেয় ধ্বংসলীলার দুয়ারে,<br />
+            তাদের মধ্যে অন্যতম হলো তোমার কান্না।</p>
+          <p>হয়তো একমাত্রও বলতে পারো।</p>
+          <p>আমার কাঁধে ভিসুভিয়াসের ভার দিয়ে দাও,<br />
+            কিংবা আটকে রাখতে বলো সুনামির ঢেউ,<br />
+            আমার হাত পা করো ক্রুশবিদ্ধ,<br />
+            কিংবা আমার প্রতিদ্বন্দ্বী হোক একিলিস বা হারকিউলিসের মতো কেউ।</p>
+          <p>আমার চোখ দিয়ে অঝরে পানি ঝড়ুক,<br />
+            তৈরী হোক আরো সহস্র কাপ্তাই,<br />
+            গোটা পৃথিবীতে শুধু আমার মৃত্যু হোক,<br />
+            কিংবা ভালো থাকুক আমি বাদে সবাই।</p>
+          <p>বিশ্বাস করো, এসবের কোনো কিছুই আমাকে বিন্দু মাত্র বিচলিত করে না,<br />
+            আমি হাসিমুখে মেনে নিতে পারি সব।<br />
+            কিন্তু তোমার কান্না?</p>
+        </article>
+        <article class="poem-slide" data-poem="4">
+          <span class="poem-number">০৪ / ০৬</span>
+          <h3>নদীর ধারা</h3>
+          <p>নদীর এই বিরামহীন ধারা,<br />
+            ছুটতে ছুটতে ঠিক কোথায় যে ছুটে যায়?<br />
+            কিসের ই বা তাদের এতো তাড়া?</p>
+          <p>মাঝে মাঝে এই নদীকে নিজের মনের মতো লাগে,<br />
+            আমার মন ও তো খুব করে ছুটে চলে যায় তোমার কাছে,<br />
+            ঠিক বিরামহীনভাবে।</p>
+          <p>আমার মনের মতো এই নদীর ধারাও কি ছুটে যায় তোমার কাছে?<br />
+            ভালোবেসে তোমার আলতা মাখা পা একটু ভিজিয়ে দিতে চায়?</p>
+          <p>তবে নদী আর আমার মনের মাঝে বিরাট এক তফাৎ আছে,<br />
+            নদী নিজেই স্বয়ংপূর্ণ,<br />
+            সৌন্দর্যে, আভিজাত্যে, গাম্ভীর্যে, বিশালতায়।<br />
+            আর আমার মন তোমায় ছাড়া অপূর্ণ..</p>
+        </article>
+        <article class="poem-slide" data-poem="5">
+          <span class="poem-number">০৫ / ০৬</span>
+          <h3>দূরত্ব</h3>
+          <p>তোমার ঠিকানা থেকে আমার ঠিকানার দূরুত্ব ঠিক কতদূর?</p>
+          <p>কয়েক আলোকবর্ষ?<br />
+            দু-চার আলোকবর্ষ তো হবেই বলো,<br />
+            নাহয় তোমায় ছেড়ে আমার ঠিকানায় পৌছানোর পথ এতো লম্বা কেনো মনে হয়?</p>
+          <p>এই যাত্রা বড্ড ক্লান্তিকর,<br />
+            এর চারিপাশে বিরহ দিয়ে ভরা,<br />
+            বিষন্নতারা দুধার দিয়ে লাইনের পর লাইন দাড়িয়ে থাকে,<br />
+            একটু পর পর শুধু মন খারাপের আনাগোনা।</p>
+          <p>এ পথ দিয়ে রোজ আমায় পাড়ি দিয়ে ফিরে যেতে হয় তোমাকে রেখে,<br />
+            আমার অবস্থাটা একবার ভেবে দেখো।</p>
+          <p>তবে আশ্চর্যের বিষয় হলো এই যে,<br />
+            আমার ঠিকানা থেকে তোমার ঠিকানায় যাওয়ার পথ বড্ড সুন্দর।<br />
+            তোমার কাছে যখন যাত্রা করি,<br />
+            চারিদিকে ছড়িয়ে থাকে ফুলের গন্ধ,<br />
+            দূর থেকে ভেসে আসে সুরেলা গান,<br />
+            চারিদিকে কেমন ভালোবাসার আয়োজন, সৌন্দর্যের মেলা,<br />
+            ঠিক এই পথ ধরেই তোমার কাছে আমি রোজ যায়।</p>
+        </article>
+        <article class="poem-slide" data-poem="6">
+          <span class="poem-number">০৬ / ০৬</span>
+          <h3>বৃষ্টির রাত</h3>
+          <p>বৃষ্টির রাতগুলো বড্ড কষ্টকর,<br />
+            হুটহাট তোমার কথা মনে করিয়ে দেয়।</p>
+          <p>এই যে,আজ তুমি এতো দূরে,<br />
+            চাইলেই তোমার সাথে দেখা করা যাবে না,<br />
+            তোমার চোখে চোখ, হাতে হাত কিংবা ঠোঁট ঠোঁট<br />
+            কিছুই রাখা হবে না।</p>
+          <p>এর থেকে কষ্টের বিষয় আর কিছু কি হতে পারে?</p>
+          <p>কিন্তু না,<br />
+            আমার মন এতোই নির্বোধ হয়েছে,<br />
+            এসব বিধিনিষেধ কিছুতেই সে মানতে পারে না,<br />
+            আসলে মানতে চায় না।</p>
+          <p>সে তোমার কথা ভাববেই।</p>
+          <p>আসলে কষ্ট তো মনের হয় না,<br />
+            কষ্ট হয় মস্তিষ্কের, কষ্ট হয় আমার।<br />
+            মানুষ মনের কষ্ট হয় ভেবে ভুল করে,<br />
+            বুকের মাঝে যে ভার অনূভুব হয় তা মস্তিষ্কের তরঙ্গের খেলা মাত্র,<br />
+            মনে আসলে মানুষের কষ্ট হয় না, হতে পারে না।</p>
+          <p>আর হবেই বা কিভাবে?<br />
+            মন দিয়ে তো ভালোবাসা হয়,<br />
+            আর যে বস্তু তোমায় একবার ভালোবেসেছে তার কি আর কোনো কষ্ট আছে??</p>
+        </article>
+        <article class="poem-slide" data-poem="7">
+          <span class="poem-number">০৭ / ২৪</span>
+          <h3>পথচলা</h3>
+          <p>দূর পথ হলেও ভয় কী আমার,<br />তোমার হাতটি হাতে আছে।</p>
+          <p>তোমার সাথে ছোট্ট জীবন<br />হাজার রঙে ভালোবাসে।</p>
+        </article>
+        <article class="poem-slide" data-poem="8">
+          <span class="poem-number">০৮ / ২৪</span>
+          <h3>মায়া</h3>
+          <p>তোমার মায়া নরম সুতো,<br />মনের ভেতর বাঁধে আমায়।</p>
+          <p>ছাড়তে গেলেই আরও কাছে<br />টেনে নেয় সে মিষ্টি মায়া।</p>
+        </article>
+        <article class="poem-slide" data-poem="9">
+          <span class="poem-number">০৯ / ২৪</span>
+          <h3>তোমার নাম</h3>
+          <p>তোমার নামটি লিখলেই যে<br />ফুল ফুটে যায় খাতার পাতায়।</p>
+          <p>একটি নামে এত ভালোবাসা<br />কী করে যে লুকিয়ে থাকে!</p>
+        </article>
+        <article class="poem-slide" data-poem="10">
+          <span class="poem-number">১০ / ২৪</span>
+          <h3>সন্ধ্যাতারা</h3>
+          <p>সন্ধ্যাতারা উঠলে আকাশে<br />তোমার মুখটি মনে পড়ে।</p>
+          <p>দিনের শেষে তোমার কথায়<br />ক্লান্ত মনটা শান্ত করে।</p>
+        </article>
+        <article class="poem-slide" data-poem="11">
+          <span class="poem-number">১১ / ২৪</span>
+          <h3>অভিমান</h3>
+          <p>তোমার ছোট্ট অভিমানও<br />গোপন করে ভালোবাসা।</p>
+          <p>একটু পরে হাসি ফুটিয়ে<br />তুমিই মুছে দাও সব ভাষা।</p>
+        </article>
+        <article class="poem-slide" data-poem="12">
+          <span class="poem-number">১২ / ২৪</span>
+          <h3>স্বপ্নের ঘর</h3>
+          <p>স্বপ্ন দিয়ে ঘর বানাবো,<br />জানালাতে রোদ নামাবো।</p>
+          <p>তুমি আমি পাশাপাশি,<br />সেই ঘরেতে গান শোনাবো।</p>
+        </article>
+        <article class="poem-slide" data-poem="13">
+          <span class="poem-number">১৩ / ২৪</span>
+          <h3>শীতের সকাল</h3>
+          <p>শীতের সকালে কুয়াশা ভেঙে<br />তোমার ডাকে দিনটা জাগে।</p>
+          <p>তোমার উষ্ণ মায়ার চাদর<br />সবকিছুই কাছে লাগে।</p>
+        </article>
+        <article class="poem-slide" data-poem="14">
+          <span class="poem-number">১৪ / ২৪</span>
+          <h3>তোমার পাশে</h3>
+          <p>তোমার পাশে বসলে মনে<br />সময় বুঝি থেমে যায়।</p>
+          <p>এক মুহূর্ত সারাজীবন<br />হয়ে আমার থেকে যায়।</p>
+        </article>
+        <article class="poem-slide" data-poem="15">
+          <span class="poem-number">১৫ / ২৪</span>
+          <h3>ছোট্ট সুখ</h3>
+          <p>তোমার পাঠানো ছোট্ট বার্তা<br />দিনের সেরা উপহার।</p>
+          <p>তোমার একটি মিষ্টি কথায়<br />হালকা হয় মনখারাপ।</p>
+        </article>
+        <article class="poem-slide" data-poem="16">
+          <span class="poem-number">১৬ / ২৪</span>
+          <h3>জোনাকির আলো</h3>
+          <p>জোনাকিরা আলো জ্বেলে<br />রাতের বুকে ছবি আঁকে।</p>
+          <p>তোমার স্মৃতি তেমন করেই<br />অন্ধকারে পাশে থাকে।</p>
+        </article>
+        <article class="poem-slide" data-poem="17">
+          <span class="poem-number">১৭ / ২৪</span>
+          <h3>ভালো থেকো</h3>
+          <p>দূরে থেকেও ভালো থেকো,<br />এই প্রার্থনা রোজ করি।</p>
+          <p>তোমার সুখের খবর শুনে<br />নিজের সুখও খুঁজে ধরি।</p>
+        </article>
+        <article class="poem-slide" data-poem="18">
+          <span class="poem-number">১৮ / ২৪</span>
+          <h3>কথা দাও</h3>
+          <p>কখনও যদি মনটা কাঁদে,<br />আমায় এসে পাশে পাবে।</p>
+          <p>হাতটি রেখো হাতের উপর,<br />সব ভয় তখন দূরে যাবে।</p>
+        </article>
+        <article class="poem-slide" data-poem="19">
+          <span class="poem-number">১৯ / ২৪</span>
+          <h3>রঙিন দিন</h3>
+          <p>তোমার ছোঁয়ায় সাদাকালো<br />দিনগুলোও রঙিন হয়।</p>
+          <p>তুমি আমার রোদ্দুর হয়ে<br />মেঘের ভেতর হাসি বোনো।</p>
+        </article>
+        <article class="poem-slide" data-poem="20">
+          <span class="poem-number">২০ / ২৪</span>
+          <h3>নক্ষত্র</h3>
+          <p>নক্ষত্র ভরা রাতের মতো<br />তোমার মনটি গভীর।</p>
+          <p>তোমার মাঝে খুঁজে পাই যে<br />আমার সবচেয়ে আপন নীড়।</p>
+        </article>
+        <article class="poem-slide" data-poem="21">
+          <span class="poem-number">২১ / ২৪</span>
+          <h3>চিঠি</h3>
+          <p>চিঠির ভাঁজে যত্ন করে<br />তোমার জন্য কথা রাখি।</p>
+          <p>খুলে পড়ো, প্রতিটি লাইনে<br />আমার হৃদয় দেখতে পাবে।</p>
+        </article>
+        <article class="poem-slide" data-poem="22">
+          <span class="poem-number">২২ / ২৪</span>
+          <h3>আজীবন</h3>
+          <p>আজ নয় শুধু, আগামীকালও<br />তোমার হাতটি চাই।</p>
+          <p>জীবন যত গল্প লিখুক,<br />শেষ পাতাতেও তোমাকেই পাই।</p>
+        </article>
+        <article class="poem-slide" data-poem="23">
+          <span class="poem-number">২৩ / ২৪</span>
+          <h3>জন্মদিনের আলো</h3>
+          <p>আজকের দিনে পৃথিবী জুড়ে<br />তোমার জন্য আলো জ্বলে।</p>
+          <p>তুমি আছো বলেই তো আমার<br />সব জন্মদিন স্বপ্নে দোলে।</p>
+        </article>
+        <article class="poem-slide" data-poem="24">
+          <span class="poem-number">২৪ / ২৪</span>
+          <h3>শেষ কবিতা নয়</h3>
+          <p>চব্বিশটি কবিতা লিখেও<br />তোমার কথা ফুরোয় না।</p>
+          <p>ভালোবাসার পরের পাতায়<br />নতুন কবিতা থামে না। ♡</p>
+        </article>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-arrow" id="poemPrev" type="button" aria-label="আগের কবিতা">←</button>
+        <div class="poem-dots" id="poemDots" aria-label="কবিতা নির্বাচন"></div>
+        <button class="carousel-arrow" id="poemNext" type="button" aria-label="পরের কবিতা">→</button>
+      </div>
+    </section>
+
+    <!-- ✏️ PHOTO — put your picture at images/photo1.jpg (or change the src) and edit the caption -->
+    <figure class="polaroid tilt reveal right" style="--rot:3deg">
+      <img src="photos/706527130_2395546360942278_4698449284581826895_n.jpg" alt="A photo of her" />
+      <figcaption> Beautiful in saree</figcaption>
+    </figure>
+
+    <div class="divider" aria-hidden="true">✿ ✦ ✿</div>
+
+    <!-- ✏️ POEM 2 -->
+    <article class="poem-card lav reveal left">
+      <h2 class="poem-title">Things I love about you</h2>
+      <div class="poem">
+        <p>Your laugh — my favourite sound.</p>
+        <p>Your eyes — two tiny galaxies.</p>
+        <p>Your kindness — quiet,<br />but it fills the whole room.</p>
+        <p>And you — exactly as you are.</p>
+      </div>
+    </article>
+
+    <!-- ✏️ TWO PHOTOS side by side -->
+    <div class="pair">
+      <figure class="polaroid tilt reveal" style="--rot:-4deg">
+        <img src="/photos/760402761_2455303284966585_7876078643240747648_n.jpg" alt="A photo of her" />
+        <figcaption>golden hour ✨</figcaption>
+      </figure>
+      <figure class="polaroid tilt reveal" style="--rot:3deg; --d:.2s">
+        <img src="/photos/749108185_2443895676107346_5336093359118076753_n.jpg" alt="A photo of her" />
+        <figcaption>pure joy</figcaption>
+      </figure>
+    </div>
+
+    <div class="divider" aria-hidden="true">☁ ♡ ☁</div>
+
+    <!-- ✏️ POEM 3 -->
+    <article class="poem-card mint reveal right">
+      <h2 class="poem-title">If I could gift you the moon</h2>
+      <div class="poem">
+        <p>I'd wrap the moon in silver thread<br />and tie it up with stars,</p>
+        <p>but you already shine so bright<br />you'd outglow it from afar.</p>
+      </div>
+    </article>
+
+    <!-- ✏️ GALLERY — 4 small photos. Copy a whole <figure> block to add more. -->
+    <section class="gallery-wrap">
+      <h2 class="section-title reveal">little moments 📸</h2>
+      <div class="gallery">
+        <figure class="polaroid tilt reveal" style="--rot:-3deg">
+          <img src="/photos/735193418_2428620294301551_1248704270983172567_n.jpg" alt="A photo of her" />
+          <figcaption>cutie</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:2deg">
+          <img src="/photos/625101278_2296045744225674_231543119453856108_n.jpg" alt="A photo of her" />
+          <figcaption>drapped in beauty</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:-2deg">
+          <img src="/photos/686537783_2376895552807359_1526131828713980451_n.jpg" alt="A photo of her" />
+          <figcaption>always soothing</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:4deg">
+          <img src="/photos/684280556_2373517939811787_3474037234083660260_n.jpg" alt="A photo of her" />
+          <figcaption>my favourite person</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="gallery-wrap reveal moments-together" id="moments-together">
+      <h2 class="section-title">Moments Together <span aria-hidden="true">💞</span></h2>
+
+      <div class="gallery">
+        <figure class="polaroid tilt reveal" style="--rot:-4deg">
+          <img src="photos/us/IMG_20230504_194412_468.jpg" alt="Us together" />
+          <figcaption>one of our first picture together</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:3deg">
+          <img src="photos/us/PXL_20241107_111754519.PORTRAIT.jpg" alt="Us together in the sunset" />
+          <figcaption>sunset with you</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:-2deg">
+          <img src="photos/us/PXL_20260512_113127292 (1).jpg" alt="Us smiling together" />
+          <figcaption>the picture that define us </figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:4deg">
+          <img src="photos/us/PXL_20260918_091840965 (1).jpg" alt="A loving moment with you" />
+          <figcaption>the last selfie before turning 24</figcaption>
+        </figure>
+      </div>
+
+      <div class="video-grid">
+        <figure class="video-card">
+          <video controls preload="metadata" poster="images/us-video-1-poster.jpg">
+            <source src="/photos/us/20260429_164932.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <figcaption>one of our dance together</figcaption>
+        </figure>
+        <figure class="video-card vertical-video">
+          <video controls preload="metadata" poster="images/us-video-2-poster.jpg">
+            <source src="/photos/us/WhatsApp Video 2024-10-05 at 21.57.11_42f06672.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <figcaption>our laughter, frozen in motion</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="gallery-wrap reveal funny-moments" id="funny-moments">
+      <h2 class="section-title">Don't Miss The Funny ones <span aria-hidden="true">😂</span></h2>
+
+      <div class="gallery">
+        <figure class="polaroid tilt reveal" style="--rot:-3deg">
+          <img src="photos/funny/IMG_20230618_153037_939.jpg" alt="Funny photo of us" />
+          <figcaption>can't forget this picture</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:2deg">
+          <img src="photos/funny/IMG_20230710_131708_167.jpg" alt="Funny photo of us" />
+          <figcaption>caught after crying</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:-2deg">
+          <img src="photos/funny/PXL_20241002_060408544.PORTRAIT.jpg" alt="Funny photo of us" />
+          <figcaption>amar phone amar selfie .taka diyechili phone kinar??</figcaption>
+        </figure>
+        <figure class="polaroid tilt reveal" style="--rot:4deg">
+          <img src="photos/funny/PXL_20241006_115228343.PORTRAIT.jpg" alt="Funny photo of us" />
+          <figcaption>কাকতাড়ুয়া অর্পিতা</figcaption>
+        </figure>
+      </div>
+
+      <div class="video-grid">
+        <figure class="video-card">
+          <video controls preload="metadata" poster="images/funny-video-1-poster.jpg">
+            <source src="/photos/funny/PXL_20260729_084228306.TS.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <figcaption>video te asis kn??</figcaption>
+        </figure>
+        <figure class="video-card vertical-video">
+          <video controls preload="metadata" poster="images/funny-video-2-poster.jpg">
+            <source src="/photos/funny/PXL_20250208_092522007.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <figcaption>ridiculous little chaos</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="memory-studio reveal" id="memories">
+      <div class="memory-heading">
+        <p class="script-label">our little archive</p>
+        <h2 class="section-title">moving memories <span aria-hidden="true">🎞️</span></h2>
+      </div>
+
+      <div class="video-grid">
+        <figure class="video-card">
+          <video controls preload="metadata" poster="images/video-poster-1.jpg">
+            <source src="/photos/lv_0_20251017230525.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <figcaption>the little moments I keep replaying</figcaption>
+        </figure>
+        <figure class="video-card vertical-video">
+          <video controls preload="metadata" poster="images/video-poster-2.jpg">
+            <source src="/photos/lv_7604978830188514561_20260724015849.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <figcaption>your presence, saved in motion</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="special-video reveal" id="special-video">
+      <div class="special-copy">
+        <p class="script-label">press play to watch</p>
+        <h2 class="section-title">the special one <span aria-hidden="true">💌</span></h2>
+        <p lang="bn">এই ভিডিওটি শুধু তোর জন্য<br />অনেক কষ্ট ও ভালোবাসা দিয়ে বানানো 😉</p>
+      </div>
+      <div class="special-frame">
+        <span class="frame-stamp">for you, always</span>
+        <video controls preload="metadata" poster="images/special-video-poster.jpg">
+          <source src="/photos/lv_0_20261002221702.mp4" type="video/mp4" />
+          Your browser does not support video playback.
+        </video>
+      </div>
+    </section>
+
+    <!-- ✏️ POEM 4 — the big one -->
+    <article class="poem-card butter reveal left">
+      <h2 class="poem-title">My birthday wish for you</h2>
+      <div class="poem">
+        <p>May your days be soft and golden,<br />your worries small and light,</p>
+        <p>may your dreams run wild and come true<br />and your nights be full of starlight.</p>
+        <p>Happy birthday — I hope this year<br />is as wonderful as you. 💖</p>
+      </div>
+    </article>
+
+    <!-- ================= FINALE ================= -->
+    <section class="finale reveal" id="finale">
+      <h2 class="section-title">Make a wish…</h2>
+
+      <div class="cake-wrap" id="cake">
+        <svg class="cake" viewBox="0 0 220 230" aria-hidden="true">
+          <defs>
+            <clipPath id="clipBottom"><rect x="28" y="150" width="164" height="58" rx="14" /></clipPath>
+            <clipPath id="clipTop"><rect x="54" y="108" width="112" height="44" rx="12" /></clipPath>
+          </defs>
+
+          <ellipse cx="110" cy="214" rx="98" ry="11" fill="#f7d6e2" stroke="#6b3f52" stroke-width="3" />
+
+          <!-- bottom tier -->
+          <rect x="28" y="150" width="164" height="58" rx="14" fill="#ffc2d4" stroke="#6b3f52" stroke-width="3" />
+          <g clip-path="url(#clipBottom)">
+            <path fill="#fff" stroke="#6b3f52" stroke-width="3" stroke-linejoin="round"
+              d="M28 150H192V164q-10.25 14-20.5 0q-10.25 14-20.5 0q-10.25 14-20.5 0q-10.25 14-20.5 0q-10.25 14-20.5 0q-10.25 14-20.5 0q-10.25 14-20.5 0q-10.25 14-20.5 0z" />
+          </g>
+          <g stroke-width="3" stroke-linecap="round">
+            <path d="M46 190l5-3" stroke="#ff7aa2" /><path d="M72 196l5 2" stroke="#b79cff" />
+            <path d="M148 190l5-3" stroke="#5ed1a5" /><path d="M170 196l5 2" stroke="#ffb84d" />
+            <path d="M126 198l4-4" stroke="#6cc0ff" />
+          </g>
+          <path d="M110 200c-9-7-13-11-13-16a7 7 0 0 1 13-3 7 7 0 0 1 13 3c0 5-4 9-13 16z" fill="#ff7aa2" stroke="#6b3f52" stroke-width="2.5" stroke-linejoin="round" />
+
+          <!-- top tier -->
+          <rect x="54" y="108" width="112" height="44" rx="12" fill="#e4d9ff" stroke="#6b3f52" stroke-width="3" />
+          <g clip-path="url(#clipTop)">
+            <path fill="#fff" stroke="#6b3f52" stroke-width="3" stroke-linejoin="round"
+              d="M54 108H166V120q-11.2 14-22.4 0q-11.2 14-22.4 0q-11.2 14-22.4 0q-11.2 14-22.4 0q-11.2 14-22.4 0z" />
+          </g>
+          <g stroke-width="3" stroke-linecap="round">
+            <path d="M70 140l5-3" stroke="#ff7aa2" /><path d="M96 144l4 3" stroke="#ffb84d" />
+            <path d="M122 139l5-3" stroke="#5ed1a5" /><path d="M148 143l4 3" stroke="#b79cff" />
+          </g>
+
+          <!-- candles -->
+          <g stroke="#6b3f52" stroke-width="2.5" stroke-linejoin="round">
+            <rect x="81" y="78" width="8" height="30" rx="2" fill="#ffe07a" />
+            <rect x="106" y="78" width="8" height="30" rx="2" fill="#9fd8ff" />
+            <rect x="131" y="78" width="8" height="30" rx="2" fill="#ffb3c9" />
+          </g>
+          <g stroke="#6b3f52" stroke-width="2.5" stroke-linecap="round">
+            <path d="M85 78v-6" /><path d="M110 78v-6" /><path d="M135 78v-6" />
+          </g>
+
+          <!-- flames -->
+          <g class="flame" style="--d:0s">
+            <path d="M85 50c6 8 7 14 0 20-7-6-6-12 0-20z" fill="#ffb84d" stroke="#6b3f52" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M85 60c2 3 2 5 0 7-2-2-2-4 0-7z" fill="#fff3b0" />
+          </g>
+          <g class="flame" style="--d:.25s">
+            <path d="M110 50c6 8 7 14 0 20-7-6-6-12 0-20z" fill="#ffb84d" stroke="#6b3f52" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M110 60c2 3 2 5 0 7-2-2-2-4 0-7z" fill="#fff3b0" />
+          </g>
+          <g class="flame" style="--d:.5s">
+            <path d="M135 50c6 8 7 14 0 20-7-6-6-12 0-20z" fill="#ffb84d" stroke="#6b3f52" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M135 60c2 3 2 5 0 7-2-2-2-4 0-7z" fill="#fff3b0" />
+          </g>
+
+          <!-- smoke (shown after blowing) -->
+          <g class="smoke" fill="none" stroke="#b9a4b0" stroke-width="3" stroke-linecap="round">
+            <path d="M85 64q-7-8 0-14q7-6 0-14" /><path d="M110 64q-7-8 0-14q7-6 0-14" /><path d="M135 64q-7-8 0-14q7-6 0-14" />
+          </g>
+        </svg>
+      </div>
+
+      <button class="btn" id="blowBtn" type="button">Blow out the candles 🌬️</button>
+
+      <div class="wish" id="wish" aria-live="polite">
+        <p class="wish-big">Happy Birthday, <span data-her-name>Her Name</span>! 🎉</p>
+        <p class="wish-small">May every wish you make come true. 💖</p>
+      </div>
+
+      <div class="cake-video-wrap" id="candleVideoWrap" hidden>
+        <div class="cake-video-frame">
+          <span class="frame-badge">cake cutting moment</span>
+          <video id="candleVideo" controls preload="metadata" playsinline>
+            <source src="/photos/PXL_20260915_110614103.TS.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    made with 💗 by <span data-your-name>Your Name</span>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
