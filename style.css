@@ -1,0 +1,610 @@
+/* =========================================================
+   Birthday page — styles
+   ✏️ Want different colours? Change the values in :root below.
+   ========================================================= */
+
+:root {
+  --ink: #6b3f52;          /* outlines + text */
+  --ink-soft: #94697c;
+  --cream: #fff8f3;        /* page background */
+  --pink: #ffd3df;
+  --pink-deep: #ff7aa2;
+  --lav: #e4d9ff;
+  --mint: #d3f4e6;
+  --butter: #fff1b8;
+  --peach: #ffe0cc;
+
+  --shadow: 5px 5px 0 var(--ink);
+  --wobble: 255px 18px 225px 18px / 18px 225px 18px 255px; /* hand-drawn corners */
+
+  --hand: "Caveat", "Hind Siliguri", cursive;
+  --script: "Pacifico", "Hind Siliguri", cursive;
+  --body: "Quicksand", "Hind Siliguri", system-ui, sans-serif;
+  --bangla: "Tiro Bengali", "Noto Serif Bengali", "Hind Siliguri", serif;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--cream);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  color: var(--ink);
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #fff8f3 0%, #fff1f4 48%, #f6f0ff 100%);
+}
+
+/* soft colour blobs behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 8% 8%, #ffe3ec 0, transparent 42%),
+    radial-gradient(circle at 92% 32%, #ebe3ff 0, transparent 42%),
+    radial-gradient(circle at 15% 92%, #daf7eb 0, transparent 42%),
+    radial-gradient(circle at 90% 95%, #fff3c4 0, transparent 38%);
+}
+
+/* ---------- progress bar ---------- */
+.progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 6px;
+  width: 0;
+  z-index: 50;
+  border-radius: 0 6px 6px 0;
+  background: linear-gradient(90deg, #ff9ebd, #c9b3ff, #a8e8cf);
+}
+
+/* ---------- floating doodles + confetti ---------- */
+.doodle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.emoji-layer { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.floating-emoji { position: absolute; font-size: clamp(1.2rem, 3vw, 2rem); opacity: .42; animation: emojiFloat var(--dur, 11s) ease-in-out infinite; animation-delay: var(--delay, 0s); filter: drop-shadow(0 4px 8px rgba(107,63,82,.14)); }
+.doodle {
+  position: absolute;
+  opacity: .5;
+  animation: float var(--dur, 9s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+.doodle svg, .hero-doodle svg { width: 100%; height: 100%; display: block; }
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* ---------- music button ---------- */
+.music {
+  position: fixed;
+  top: 14px; right: 14px;
+  z-index: 60;
+  width: 46px; height: 46px;
+  padding: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--ink);
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0 var(--ink);
+  cursor: pointer;
+}
+.music.on { background: var(--butter); }
+.music:focus-visible, .btn:focus-visible {
+  outline: 3px dashed var(--pink-deep);
+  outline-offset: 4px;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  font: 700 1.05rem/1 var(--body);
+  color: var(--ink);
+  background: #ffb5cb;
+  border: 3px solid var(--ink);
+  border-radius: var(--wobble);
+  padding: .95em 1.6em;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+
+/* =========================================================
+   COVER
+   ========================================================= */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 6rem 1.25rem 5rem;
+}
+
+.hero-inner { position: relative; z-index: 2; max-width: 720px; }
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--hand);
+  font-size: clamp(1.5rem, 5vw, 2.1rem);
+  color: var(--ink-soft);
+}
+
+.hero h1 {
+  margin: .15em 0 .2em;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 10vw, 5.6rem);
+  line-height: 1.2;
+  text-shadow: 3px 3px 0 var(--pink);
+}
+.hero .name {
+  display: inline-block;
+  color: var(--pink-deep);
+  text-shadow: 3px 3px 0 var(--ink);
+  animation: wiggle 3.2s ease-in-out infinite;
+}
+
+.open-btn {
+  margin-top: 1.8rem;
+  font-size: 1.15rem;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.open-btn:hover { animation-play-state: paused; }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 1.3rem; left: 50%;
+  font-family: var(--hand);
+  font-size: 1.5rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  animation: hint 1.8s ease-in-out infinite;
+}
+
+/* bunting flags */
+.bunting {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 1%;
+  pointer-events: none;
+  z-index: 2;
+}
+.bunting::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 0; right: 0;
+  border-top: 3px solid var(--ink);
+  opacity: .45;
+}
+.bunting span {
+  width: clamp(18px, 4.4vw, 44px);
+  height: clamp(26px, 6vw, 58px);
+  margin-top: 8px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  animation: sway 3.4s ease-in-out infinite;
+  animation-delay: calc(var(--n, 0) * -.3s);
+}
+
+/* big doodles around the title */
+.hero-doodle { position: absolute; z-index: 1; animation: float 8s ease-in-out infinite; }
+.hd-1 { left: 5%;  top: 16%; width: clamp(56px, 11vw, 110px); color: #ff7aa2; --r: -8deg; }
+.hd-2 { right: 6%; top: 20%; width: clamp(48px, 9vw, 96px);  color: #b79cff; --r: 10deg; animation-delay: -2s; }
+.hd-3 { left: 8%;  bottom: 16%; width: clamp(46px, 9vw, 90px); color: #5ed1a5; --r: 6deg; animation-delay: -4s; }
+.hd-4 { right: 8%; bottom: 17%; width: clamp(48px, 9vw, 92px); color: #ffb84d; --r: -6deg; animation-delay: -1s; }
+.hd-5 { left: 22%; top: 9%;  width: clamp(26px, 5vw, 46px); color: #ffb84d; --r: 0deg; animation-delay: -3s; }
+.hd-6 { right: 24%; bottom: 10%; width: clamp(28px, 5vw, 50px); color: #ff7aa2; --r: 0deg; animation-delay: -5s; }
+
+/* =========================================================
+   STORY
+   ========================================================= */
+main {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 3rem 1rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(3rem, 9vw, 5.5rem);
+}
+
+.left  { align-self: flex-start; margin-left: 3%; }
+.right { align-self: flex-end;   margin-right: 3%; }
+
+/* --- scroll reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px) scale(.97);
+  transition: opacity .9s ease, transform .9s cubic-bezier(.2, .8, .2, 1);
+  transition-delay: var(--d, 0s);
+}
+.reveal.in-view { opacity: 1; transform: none; }
+
+/* tilted things keep their tilt when revealed */
+.tilt.reveal { transform: translateY(44px) rotate(calc(var(--rot, 0deg) * 2)) scale(.92); }
+.tilt.reveal.in-view { transform: rotate(var(--rot, 0deg)); }
+
+/* --- sticky note --- */
+.note {
+  max-width: 300px;
+  padding: 1.3rem 1.4rem 1.2rem;
+  font-family: var(--hand);
+  font-size: 1.6rem;
+  line-height: 1.3;
+  text-align: center;
+  background: var(--butter);
+  border: 3px solid var(--ink);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.note::before, .polaroid::before {
+  content: "";
+  position: absolute;
+  top: -14px; left: 50%;
+  width: 84px; height: 26px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,.75) 0 6px, rgba(255,190,210,.55) 6px 12px);
+  border: 2px dashed rgba(107, 63, 82, .35);
+}
+
+/* --- poem cards --- */
+.poem-card {
+  width: min(560px, 92%);
+  padding: 2.3rem 1.8rem 1.5rem;
+  background: var(--pink);
+  border: 3px solid var(--ink);
+  border-radius: var(--wobble);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.poem-card.lav    { background: var(--lav); }
+.poem-card.mint   { background: var(--mint); }
+.poem-card.butter { background: var(--butter); }
+.bangla-card { background: linear-gradient(145deg, #ffe0eb, #f8e7ff); }
+.script-label { margin: 0 0 .3rem; color: var(--pink-deep); font-family: var(--hand); font-size: 1.3rem; letter-spacing: .04em; text-align: center; }
+.bangla-poem p, [lang="bn"] { font-family: var(--bangla); }
+.bangla-poem p { font-size: clamp(1.15rem, 4.2vw, 1.45rem); line-height: 1.9; }
+
+/* --- 24-poem carousel --- */
+.poetry-carousel { width: min(760px, 100%); padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem); padding-bottom: max(clamp(1.5rem, 5vw, 3rem), env(safe-area-inset-bottom)); background: rgba(255,255,255,.58); border: 1px solid rgba(107,63,82,.2); box-shadow: 0 18px 45px rgba(107,63,82,.12); border-radius: 28px; }
+.carousel-heading { text-align: center; }
+.carousel-note { margin: -.55rem auto 1.6rem; color: var(--ink-soft); font-family: var(--bangla); font-size: 1.05rem; line-height: 1.8; }
+.poetry-window { position: relative; min-height: clamp(430px, 66vh, 620px); display: grid; place-items: center; padding: 1.2rem; background: linear-gradient(135deg, #fff1f5, #f3edff); border: 2px solid rgba(107,63,82,.32); border-radius: 22px; overflow: hidden; }
+.poetry-window::before, .poetry-window::after { content: "✦"; position: absolute; color: var(--pink-deep); opacity: .55; font-size: 1.6rem; }
+.poetry-window::before { top: 1rem; left: 1.2rem; }
+.poetry-window::after { right: 1.2rem; bottom: 1rem; }
+.poem-slide { display: none; width: min(560px, 100%); max-height: clamp(360px, 58vh, 560px); padding: .9rem 1.4rem 1rem .9rem; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-color: var(--pink-deep) rgba(107,63,82,.12); scrollbar-width: thin; text-align: center; animation: poemIn .55s ease both; }
+.poem-slide.is-active { display: block; }
+.poem-number { display: inline-block; margin-bottom: .7rem; color: var(--pink-deep); font: 700 .9rem/1 var(--body); letter-spacing: .12em; }
+.poem-slide h3 { display: none; }
+.poem-slide p { margin: 0 0 1.05rem; color: var(--ink-soft); font-family: var(--bangla); font-size: clamp(1.02rem, 2.2vw, 1.32rem); line-height: 1.9; letter-spacing: .01em; }
+.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.4rem; }
+.carousel-arrow { width: 42px; height: 42px; flex: 0 0 auto; color: var(--ink); background: var(--pink); border: 2px solid var(--ink); border-radius: 50%; box-shadow: 3px 3px 0 var(--ink); cursor: pointer; font: 700 1.3rem/1 var(--body); transition: transform .15s, box-shadow .15s; }
+.carousel-arrow:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.carousel-arrow:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+.poem-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: .38rem; max-width: 390px; }
+.poem-dot { width: 11px; height: 11px; padding: 0; background: #ead9e3; border: 1px solid var(--ink-soft); border-radius: 50%; cursor: pointer; }
+.poem-dot.is-active { background: var(--pink-deep); transform: scale(1.25); }
+.poem-dot:focus-visible, .carousel-arrow:focus-visible { outline: 3px dashed var(--pink-deep); outline-offset: 3px; }
+
+.poem-title {
+  margin: 0 0 1rem;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* each <p> in a poem fades in one after another (delays are set in script.js) */
+.poem p {
+  margin: 0 0 1rem;
+  font-family: var(--hand);
+  font-size: clamp(1.45rem, 5vw, 1.85rem);
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .9s ease, transform .9s ease;
+  transition-delay: calc(var(--i, 0) * .55s + .4s);
+}
+.in-view .poem p { opacity: 1; transform: none; }
+
+/* --- polaroids --- */
+.polaroid {
+  --rot: -3deg;
+  margin: 0;
+  width: min(340px, 82%);
+  padding: 14px 14px 16px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 3px;
+  background: var(--pink);
+}
+.polaroid figcaption {
+  margin-top: 10px;
+  font-family: var(--hand);
+  font-size: 1.6rem;
+  line-height: 1.1;
+  text-align: center;
+}
+.polaroid.tilt.reveal.in-view:hover {
+  transform: rotate(0deg) scale(1.04);
+  z-index: 3;
+}
+
+.pair {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+.pair .polaroid { width: min(300px, 80%); }
+@media (min-width: 700px) {
+  .pair .polaroid:nth-child(2) { margin-top: 3rem; }
+}
+
+/* --- gallery --- */
+.gallery-wrap { width: min(860px, 100%); }
+.section-title {
+  margin: 0 0 1.6rem;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  text-align: center;
+  text-decoration: underline wavy var(--pink-deep) 3px;
+  text-underline-offset: 10px;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.6rem 1.2rem;
+  padding: 0 .4rem;
+}
+.gallery .polaroid { width: 100%; padding: 9px 9px 12px; box-shadow: 4px 4px 0 var(--ink); }
+.gallery .polaroid figcaption { font-size: 1.3rem; }
+.gallery .polaroid::before { width: 60px; height: 20px; top: -11px; }
+
+/* --- video memories --- */
+.memory-studio, .special-video { width: min(900px, 100%); }
+.memory-heading { text-align: center; }
+.memory-intro { margin: -.6rem auto 2rem; max-width: 600px; color: var(--ink-soft); font-family: var(--bangla); font-size: 1.15rem; line-height: 1.8; }
+.video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.video-card { margin: 0; padding: 10px 10px 14px; background: #fff; border: 3px solid var(--ink); box-shadow: var(--shadow); transform: rotate(-1.5deg); }
+.video-card:nth-child(2) { transform: rotate(1.5deg); }
+.video-card video, .special-frame video { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #2f2030; }
+.video-card figcaption { padding: .75rem .35rem 0; font-family: var(--hand); font-size: 1.4rem; text-align: center; }
+.special-video { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: clamp(1.5rem, 5vw, 3.5rem); padding: clamp(1.5rem, 5vw, 3.5rem); background: linear-gradient(135deg, #2f2030, #55344d); border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--pink-deep); color: #fff8f3; }
+.special-video .section-title { color: #fff8f3; text-decoration-color: var(--pink); }
+.special-copy p:last-child { font-size: 1.15rem; line-height: 1.9; }
+.special-frame { position: relative; padding: 10px; background: #fff8f3; transform: rotate(2deg); box-shadow: 5px 5px 0 rgba(0,0,0,.22); }
+.special-frame video { aspect-ratio: 16 / 9; }
+.frame-stamp { position: absolute; top: -18px; right: 8%; z-index: 2; padding: .35rem .75rem; color: var(--ink); background: var(--butter); border: 2px dashed var(--ink); font-family: var(--hand); font-size: 1.2rem; transform: rotate(-7deg); }
+
+.divider {
+  font-size: 1.6rem;
+  letter-spacing: .6em;
+  color: var(--pink-deep);
+  opacity: .8;
+}
+
+/* =========================================================
+   FINALE
+   ========================================================= */
+.finale {
+  width: min(640px, 100%);
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.cake-wrap { display: block; width: fit-content; margin: 0 auto 1.4rem; cursor: pointer; animation: bob 4s ease-in-out infinite; }
+.cake { width: min(300px, 72vw); height: auto; display: block; overflow: visible; }
+
+.flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: flicker .7s ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s);
+  transition: opacity .3s ease;
+}
+.smoke { opacity: 0; }
+.cake-wrap.out .flame { animation: none; opacity: 0; }
+.cake-wrap.out .smoke { animation: smoke 2.2s ease-out; }
+
+.wish {
+  margin-top: 2rem;
+  opacity: 0;
+  transform: scale(.9) translateY(10px);
+  transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1);
+}
+.wish.show { opacity: 1; transform: none; }
+.wish-big {
+  margin: 0 0 .3rem;
+  font-family: var(--script);
+  font-size: clamp(1.7rem, 6.5vw, 2.6rem);
+  line-height: 1.3;
+  color: var(--pink-deep);
+  text-shadow: 2px 2px 0 var(--ink);
+}
+.wish-small {
+  margin: 0;
+  font-family: var(--hand);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+.cake-video-wrap {
+  width: min(760px, 100%);
+  margin: 2rem auto 0;
+  opacity: 0;
+  transform: translateY(22px) scale(.98);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.cake-video-wrap.show {
+  opacity: 1;
+  transform: none;
+}
+.cake-video-frame {
+  position: relative;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fffaf4, #ffeaf2 40%, #f2ebff 100%);
+  border: 3px solid var(--ink);
+  border-radius: 30px;
+  box-shadow: 8px 8px 0 rgba(107, 63, 82, 0.18);
+  transform: rotate(1.2deg);
+}
+.cake-video-frame::before,
+.cake-video-frame::after {
+  content: "✦";
+  position: absolute;
+  color: var(--pink-deep);
+  font-size: 1.5rem;
+  opacity: 0.72;
+}
+.cake-video-frame::before { top: -0.8rem; left: 1.2rem; }
+.cake-video-frame::after { right: 1.2rem; bottom: -0.8rem; }
+.frame-badge {
+  position: absolute;
+  top: -0.9rem;
+  right: 7%;
+  z-index: 2;
+  padding: 0.35rem 0.8rem;
+  background: var(--butter);
+  border: 2px dashed var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: var(--hand);
+  font-size: 1.2rem;
+  transform: rotate(7deg);
+}
+.cake-video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  background: #2f2030;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1rem 3rem;
+  text-align: center;
+  font-family: var(--hand);
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50%      { transform: translateY(-16px) rotate(calc(var(--r, 0deg) + 8deg)); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(2deg) translateY(-3px); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+@keyframes hint {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, 8px); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes flicker {
+  from { transform: scale(1, 1) rotate(-3deg); }
+  to   { transform: scale(.92, 1.1) rotate(3deg); }
+}
+@keyframes smoke {
+  0%   { opacity: 0; transform: translateY(6px); }
+  25%  { opacity: .9; }
+  100% { opacity: 0; transform: translateY(-26px); }
+}
+@keyframes poemIn {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes emojiFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-8deg); }
+  50% { transform: translate3d(18px, -28px, 0) rotate(10deg); }
+}
+
+/* =========================================================
+   MOBILE + ACCESSIBILITY
+   ========================================================= */
+@media (max-width: 640px) {
+  .left, .right { align-self: center; margin-left: 0; margin-right: 0; }
+  .poem-card { padding: 2.1rem 1.2rem 1.2rem; }
+  .hd-5, .hd-6 { display: none; }
+  .video-grid, .special-video { grid-template-columns: 1fr; }
+  .special-video { padding: 1.4rem 1rem 1.8rem; }
+  .special-frame { transform: rotate(0); }
+  .poetry-carousel { width: calc(100% - .5rem); border-radius: 20px; }
+  .poetry-window { min-height: min(72vh, 560px); max-height: 72vh; padding: .7rem; }
+  .poem-slide { max-height: calc(72vh - 2.9rem); padding: .8rem .9rem .9rem .7rem; }
+  .poem-slide p { font-size: clamp(1rem, 4.5vw, 1.2rem); line-height: 1.9; }
+  .carousel-controls { gap: .5rem; }
+  .poem-dots { max-width: 230px; gap: .32rem; }
+  .poem-dot { width: 9px; height: 9px; }
+}
+
+@media (max-width: 380px) {
+  .poetry-carousel { padding-left: .65rem; padding-right: .65rem; }
+  .carousel-note { font-size: .95rem; }
+  .carousel-arrow { width: 38px; height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal, .poem p { opacity: 1 !important; transform: none !important; }
+  .tilt.reveal { transform: rotate(var(--rot, 0deg)) !important; }
+  .scroll-hint { transform: translateX(-50%); }
+  .wish { opacity: 0; }
+  .wish.show { opacity: 1 !important; }
+}
