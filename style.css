@@ -578,9 +578,12 @@ footer {
    MOBILE + ACCESSIBILITY
    ========================================================= */
 @media (max-width: 640px) {
+  html { font-size: 18px; }
   .left, .right { align-self: center; margin-left: 0; margin-right: 0; }
   .poem-card { padding: 2.1rem 1.2rem 1.2rem; }
   .hd-5, .hd-6 { display: none; }
+  .music { width: 52px; height: 52px; font-size: 1.45rem; }
+  .btn { min-height: 48px; }
   .video-grid, .special-video { grid-template-columns: 1fr; }
   .special-video { padding: 1.4rem 1rem 1.8rem; }
   .special-frame { transform: rotate(0); }

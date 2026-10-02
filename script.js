@@ -242,15 +242,25 @@ const CONFIG = {
   /* ---------- music (button only shows if audio/song.mp3 exists) ---------- */
   const bgm = $("#bgm");
   const musicBtn = $("#musicBtn");
+  const videos = $$("video");
   let musicOn = false;
+  let activeVideo = null;
+  let resumeMusicAfterVideo = false;
   const setMusic = (on) => {
     musicOn = on;
     musicBtn.textContent = on ? "🔊" : "🎵";
     musicBtn.classList.toggle("on", on);
   };
   const playMusic = () => {
-    if (musicBtn.hidden) return;
-    bgm.play().then(() => setMusic(true)).catch(() => {});
+    if (musicBtn.hidden || activeVideo) return;
+    bgm.play().then(() => {
+      if (activeVideo) {
+        bgm.pause();
+        setMusic(false);
+        return;
+      }
+      setMusic(true);
+    }).catch(() => {});
   };
   if (bgm.readyState >= 1) musicBtn.hidden = false;
   bgm.addEventListener("loadedmetadata", () => (musicBtn.hidden = false));
@@ -262,6 +272,72 @@ const CONFIG = {
       playMusic();
     }
   });
+
+  const finishVideo = (video) => {
+    if (activeVideo !== video) return;
+    activeVideo = null;
+    if (resumeMusicAfterVideo) {
+      resumeMusicAfterVideo = false;
+      playMusic();
+    }
+  };
+  videos.forEach((video) => {
+    video.addEventListener("play", () => {
+      if (activeVideo === video) return;
+      const previousVideo = activeVideo;
+      if (!previousVideo) {
+        resumeMusicAfterVideo = musicOn || !bgm.paused;
+        if (resumeMusicAfterVideo) {
+          bgm.pause();
+          setMusic(false);
+        }
+      }
+      activeVideo = video;
+      if (previousVideo) previousVideo.pause();
+    });
+    video.addEventListener("pause", () => finishVideo(video));
+    video.addEventListener("ended", () => finishVideo(video));
+  });
+
+  if (videos.length && "IntersectionObserver" in window) {
+    const visibility = new Map(videos.map((video) => [video, 0]));
+    let selectedVideo = null;
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        visibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
+
+      let nextVideo = null;
+      let highestRatio = 0.5;
+      let nearestCenter = Infinity;
+      videos.forEach((video) => {
+        const ratio = visibility.get(video) || 0;
+        if (ratio < 0.5) return;
+        const bounds = video.getBoundingClientRect();
+        const centerDistance = Math.abs(bounds.top + bounds.height / 2 - window.innerHeight / 2);
+        if (ratio > highestRatio || (ratio === highestRatio && centerDistance < nearestCenter)) {
+          nextVideo = video;
+          highestRatio = ratio;
+          nearestCenter = centerDistance;
+        }
+      });
+
+      selectedVideo = nextVideo;
+      if (nextVideo) {
+        if (nextVideo.paused) {
+          nextVideo.play().catch(() => {
+            if (selectedVideo !== nextVideo) return;
+            nextVideo.muted = true;
+            nextVideo.play().catch(() => {});
+          });
+        }
+      } else if (activeVideo) {
+        activeVideo.pause();
+      }
+    }, { threshold: [0, 0.5, 1] });
+
+    videos.forEach((video) => videoObserver.observe(video));
+  }
 
   /* ---------- cover button ---------- */
   $("#openBtn").addEventListener("click", (e) => {
