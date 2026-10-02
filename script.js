@@ -243,6 +243,7 @@ const CONFIG = {
   const bgm = $("#bgm");
   const musicBtn = $("#musicBtn");
   const videos = $$("video");
+  bgm.volume = 0.35;
   let musicOn = false;
   let activeVideo = null;
   let resumeMusicAfterVideo = false;
@@ -272,6 +273,14 @@ const CONFIG = {
       playMusic();
     }
   });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "hidden") return;
+    resumeMusicAfterVideo = false;
+    if (!bgm.paused) {
+      bgm.pause();
+      setMusic(false);
+    }
+  });
 
   const finishVideo = (video) => {
     if (activeVideo !== video) return;
@@ -298,46 +307,6 @@ const CONFIG = {
     video.addEventListener("pause", () => finishVideo(video));
     video.addEventListener("ended", () => finishVideo(video));
   });
-
-  if (videos.length && "IntersectionObserver" in window) {
-    const visibility = new Map(videos.map((video) => [video, 0]));
-    let selectedVideo = null;
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        visibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
-      });
-
-      let nextVideo = null;
-      let highestRatio = 0.5;
-      let nearestCenter = Infinity;
-      videos.forEach((video) => {
-        const ratio = visibility.get(video) || 0;
-        if (ratio < 0.5) return;
-        const bounds = video.getBoundingClientRect();
-        const centerDistance = Math.abs(bounds.top + bounds.height / 2 - window.innerHeight / 2);
-        if (ratio > highestRatio || (ratio === highestRatio && centerDistance < nearestCenter)) {
-          nextVideo = video;
-          highestRatio = ratio;
-          nearestCenter = centerDistance;
-        }
-      });
-
-      selectedVideo = nextVideo;
-      if (nextVideo) {
-        if (nextVideo.paused) {
-          nextVideo.play().catch(() => {
-            if (selectedVideo !== nextVideo) return;
-            nextVideo.muted = true;
-            nextVideo.play().catch(() => {});
-          });
-        }
-      } else if (activeVideo) {
-        activeVideo.pause();
-      }
-    }, { threshold: [0, 0.5, 1] });
-
-    videos.forEach((video) => videoObserver.observe(video));
-  }
 
   /* ---------- cover button ---------- */
   $("#openBtn").addEventListener("click", (e) => {
